@@ -1,0 +1,112 @@
+{% load static %}
+{% load staticfiles%}
+<head>
+<h1 style="color:white;"><center/> iMeasure</h1>
+
+<style>
+.form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background: #fff;
+  width: 285px;
+  margin: -140px 0 0 -182px;
+  padding: 40px;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+
+  input {
+    outline: none;
+    display: block;
+    width: 100%;
+    margin: 0 0 20px;
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    color: #ccc;
+    font-family: "Roboto";
+    box-sizing: border-box;
+    font-size: 14px;
+    font-wieght: 400;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition: 0.2s linear;
+    &input:focus {
+      color: #333;
+      border: 1px solid #44c4e7;
+    }
+  }
+  button {
+    cursor: pointer;
+    background: #44c4e7;
+    width: 100%;
+    padding: 10px 15px;
+    border: 0;
+    color: #fff;
+    font-family: "Roboto";
+    font-size: 14px;
+    font-weight: 400;
+    &:hover {
+      background: #369cb8;
+    }
+  }
+}
+
+.error, .valid{display:none;}
+
+
+body {
+  background: url(http://www.color-hex.com/palettes/26323.png) repeat;
+  background-size: cover;
+}
+.submit {
+  background-color: #44c4e7;
+  border: none;
+  color: white;
+  padding: 10px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+.logins
+{
+  color:#44c4e7;
+  font-size:50;
+  margin-top: -40px;
+}
+.footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   color: white;
+   text-align: right;
+   font-size:11;
+}
+</style>
+
+
+
+
+<section class="form animated flipInX">
+<center><h2 class="logins">Login</h2><center>
+  <form method="POST" class="loginbox" autocomplete="off">
+    {% csrf_token %}
+
+    {% if request.GET.next %}
+    <input type="hidden" name="next" value={{ request.GET.next }} />
+    {% endif %}
+    <strong><h style="color:#44c4e7;">Username:</h><br /></strong>
+    <input type=text name="username" title="Enter your user name" id="username" /> <br />
+
+    <strong> <h style="color:#44c4e7;">Password:</h><br /></strong>
+     <input type=password name="password" title="Enter your password" id="password" /><br /><br />
+
+      <input type=submit class="submit" value='Open sesame!'/><br /><br />
+</form>
+</section>
+<div class="footer">
+  <p>Developed by Ramesh Krishna for iOPEX Technologies.</p>
+</div>
+

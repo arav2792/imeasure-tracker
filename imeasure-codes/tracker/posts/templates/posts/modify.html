@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<style>
+input[type="text"] { border: none }
+.container {
+  width: 500px;
+  clear: both;
+}
+
+.container input {
+  width: 100%;
+  clear: both;
+}
+</style>
+<body>
+  <div class="container">
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Submit</button>
+</form>
+  </div>
+</body>
+</html>

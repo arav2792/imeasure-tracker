@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head><title>Sign up!</title></head>
+<h1><center>signup</h1>
+
+<form method="POST" style="text-align:center;" action="{ url 'accounts:usercreated' }">
+  {% csrf_token %}
+Name<br />
+<input type=text name="username" /> <br />
+Password <br />
+<input type=password name="password1" /><br />
+Confirm password<br />
+<input type=password name="password2" /><br />
+<input type=submit value='Signup!' /><br /><br />
+<!--<input type=submit value='Login' formaction="{ url 'accounts:login' }">
+<p style="color:red;"><a href="/accounts/login">Login</a></p>-->
+{% if error %}
+{{ error }}
+{% endif %}
+</form>

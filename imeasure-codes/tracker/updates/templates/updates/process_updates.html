@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<head>
+  <title>Process updates</title>
+  {% load static %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="{% static 'js/toggle.js' %}"></script>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+<script>
+        $( function() {
+            $( "#id_Date" ).datepicker({
+                dateFormat: 'yy-mm-dd',
+                changeMonth: true,
+                changeYear: true
+            });
+        });
+</script>
+  <title>Add new!</title>
+</head>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+input[type=text], select, textarea {
+  width: 300%;
+  padding: 4px;
+  border: 1px solid #4C596B;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+label {
+  padding: 12px 12px 12px 0;
+  display: inline-block;
+  margin-left: -25px;
+}
+
+input[type=submit] {
+  background-color: white;
+  color: #2C9FDD;
+  padding: 3px 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  float: left;
+  margin-left : 1%
+}
+
+input[type=reset] {
+  background-color: white;
+  color: #2C9FDD;
+  padding: 3px 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  float: left;
+  margin-left : 7%
+}
+
+input[type=submit]:hover {
+  background-color: #4C596B;
+}
+
+input[type=reset]:hover {
+  background-color: #4C596B;
+}
+
+.col-25 {
+  float: left;
+  width: 15%;
+  margin-top: 10px;
+}
+
+.col-75 {
+  float: left;
+  width: 20%;
+  margin-top: 22px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.border {
+  background-color: #EAF5FB;
+  width: 600px;
+  border: 10px solid #56B2E4;
+  padding: 2px;
+  margin: 20px;
+  margin-left : 25%
+}
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .col-25, .col-75, input[type=submit] {
+    width: 100%;
+    margin-top: 0;
+  }
+}
+
+.boxhead a {
+    color: #2C9FDD;
+    text-decoration: none;
+}
+
+.boxhead a:hover{
+  background-color: #4C596B;
+}
+
+form {
+        width: 80%;
+        margin-left : 27%
+    }
+
+.inlineLabels ul {
+  list-style:none;
+}
+
+input {
+  margin: 0;
+  display: inline-block;
+}
+</style>
+
+<body>
+<div class="border">
+<form class="site-form" method="post" enctype="multipart/form-data">
+  <div class="inlineLabels">
+  {% csrf_token %}
+  <div class="inline-container">
+  {% for field in updates %}
+    <div class="row">
+        <div class="col-25">
+          <b>{{ field.label_tag }}</b>
+        </div>
+        <div class="col-75">
+        </b>{{ field }}</br>
+        </div>
+    </div>
+  {% endfor %}
+  </div>
+  <div class="boxhead">
+    <input type="submit" value="Submit">&nbsp;
+      <input type="reset" value="Reset">&nbsp;
+    <button><a href="{% url 'updates:updates_list' %}">Back to list</a></button>
+  </div>
+</form>
+</div>
+</body>
+</html>

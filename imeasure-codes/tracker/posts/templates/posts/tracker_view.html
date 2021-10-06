@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+
+
+{% block content %}
+<html>
+<title>View incident</title>
+<style>
+.buttons {
+  background-color: #2C9FDD;
+  border-style: solid;
+  color: white;
+  padding: 7px 12px;
+  text-align: center;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.buttons:hover {
+  background-color: #4C596B;
+}
+
+.buttons {
+  background-color: #2C9FDD;
+  border-style: solid;
+  color: white;
+  padding: 7px 12px;
+  text-align: center;
+  display: inline-block;
+  font-size: 16px;
+  margin: 3px 2px;
+  cursor: pointer;
+}
+
+.buttons:hover {
+  background-color: #4C596B;
+}
+
+table {
+    border: 1px solid #CCC;
+    border-collapse: collapse;
+    width: 50%;
+    border: none;
+    margin-left: 270px;
+}
+
+td {
+    border: none;
+    padding: 15px;
+    width: 80px;
+    border: none;
+}
+</style>
+<body>
+  {% csrf_token %}
+  <div class="container">
+<center>
+<table>
+   <tr><td>Ticket No.</td> <td>{{ track.id }}<td></tr>
+   <tr><td>Year</td> <td>{{ track.Year }}<td></tr>
+   <tr><td>Month </td> <td>{{ track.Month }}<td></tr>
+   <tr><td>Date </td> <td>{{ track.Date }}<td></tr>
+   <tr><td>Shift </td> <td>{{ track.Shift }}<td></tr>
+   <tr><td>Day Of Week </td> <td>{{ track.Day_Of_Week }}<td></tr>
+   <tr><td>Start Time </td> <td>{{ track.Start_Time }}<td></tr>
+   <tr><td>Responded Time </td> <td>{{ track.Responded_Time }}<td></tr>
+   <tr><td>Time spent </td> <td>{{ track.Time_spent }}<td></tr>
+   <tr><td>Responsible Team </td> <td>{{ track.Responsible_Team }}<td></tr>
+   <tr><td>False alarm </td> <td>{{ track.False_Alarm }}<td></tr>
+   <tr><td>Incident Type </td> <td>{{ track.Incident_Type }}<td></tr>
+   <tr><td>Priority </td> <td>{{ track.Priority }}<td></tr>
+   <tr><td>If Others Please Specify </td> <td>{{ track.If_Others_Please_Specify }}<td></tr>
+   <tr><td>Description </td> <td>{{ track.Description }}<td></tr>
+   <tr><td>Environment </td> <td>{{ track.Environment }}<td></tr>
+   <tr><td>Host Type </td> <td>{{ track.Host_Type }}<td></tr>
+   <tr><td>Host Name </td> <td>{{ track.Host_Name }}<td></tr>
+   <tr><td>Source of Alert </td> <td>{{ track.Source_of_Alert }}<td></tr>
+   <tr><td>Mode of Alert </td> <td>{{ track.Mode_of_Alert }}<td></tr>
+   <tr><td>NOC Engineer </td> <td>{{ track.NOC_Engineer }}<td></tr>
+   <tr><td>Remediation </td> <td>{{ track.Remediation }}<td></tr>
+   <tr><td>Escalated</td> <td>{{ track.Escalated }}<td></tr>
+   <tr><td>Escalated Reason </td> <td>{{ track.Escalated_Reason }}<td></tr>
+   <tr><td>Status </td> <td>{{ track.Status }}<td></tr>
+   <tr><td>Escalated to </td> <td>{{ track.Escalated_to }}<td></tr>
+   <tr><td>Resolved by Team </td> <td>{{ track.Resolved_by_Team }}<td></tr>
+   <tr><td>Resolved by Engineer </td> <td>{{ track.Resolved_by_Engineer }}<td></tr>
+   <tr><td>Resolution </td> <td>{{ track.Resolution }}<td></tr>
+   <tr><td>Comments </td> <td>{{ track.Comments }}<td></tr>
+</table>
+  <form>
+    <td><button class="buttons" formaction="{% url 'posts:modify' track.id %}">Edit</button></td>
+    <td><button class="buttons" formaction="{% url 'posts:tracker_list' %}">Back to list</button></td>
+  <form>
+</center>
+
+</div>
+</body>
+</html>
+{% endblock %}

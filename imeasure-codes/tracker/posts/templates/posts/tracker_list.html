@@ -1,0 +1,134 @@
+{% extends 'base.html' %}
+{% load bootstrap3 %}
+{% block content %}
+{% load render_table from django_tables2 %}
+{% load django_tables2 %}
+{% load bootstrap3 %}
+{% load querystring from django_tables2 %}
+
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Tracker</title>
+  {% csrf_token %}
+<style>
+  th {
+    text-align: left;
+    background-color: #56B2E4;
+    color: #FFFFFF;
+    text-decoration: none!important;
+    text-align: left;
+    padding: 8px;
+    font-size: 80%;
+  }
+
+  table {
+  border-collapse: collapse;
+  width: 100%;
+  }
+
+  td {
+    text-align: left;
+    padding: 8px;
+    font-size: 80%;
+  }
+
+  tr:hover {background-color:#CBE3FA;}
+
+  tr:nth-child(even) {background-color: #F2F9FD;}
+
+  .buttons {
+    background-color: #2C9FDD;
+    border-style: solid;
+    color: white;
+    padding: 7px 12px;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
+
+  .buttons:hover {
+    background-color: #4C596B;
+  }
+
+  div.table-container {
+    display: inline-block;
+    position:relative;
+    overflow:auto;
+  }
+
+  input {
+  float: right;
+  }
+
+  input[type=text] {
+    width: 130px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 10px;
+    background-color: white;
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    padding: 6px 10px 8px 20px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+  }
+
+  input[type=text]:focus {
+    width: 100%;
+  }
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
+
+</head>
+
+<body>
+ <form>
+  <button class="buttons" formaction="{% url 'posts:search' %}">Advanced Search</button>
+  <button class="buttons" formaction="{% url 'posts:tracker_edit' %}">Add New!</button>
+  <div class="dropdown">
+    <button class="buttons">Export
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <a href="{% querystring '_export'='csv' %}">Download CSV</a>
+      <a href="{% querystring '_export'='xls' %}">Download Excel</a>
+      <a href="{% querystring '_export'='json' %}">Download JSON</a>
+    </div>
+  </div>
+  <input id="myInput" type="text" placeholder="Search">
+<div style="background: white;
+width: 100%;
+height: 100%;
+overflow: scroll;
+border: 2px solid #2C9FDD;
+border-bottom: none;">
+
+<table class="table table-striped">
+
+<tbody  {{ table.attrs.tbody.as_html }} id="myTable">
+    {% render_table table %}
+</tbody>
+
+</table>
+</div>
+  </form>
+</body>
+
+</html>
+{% endblock %}

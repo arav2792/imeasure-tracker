@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+
+
+{% block content %}
+<html>
+<title>View incident</title>
+<style>
+.buttons {
+  background-color: #2C9FDD;
+  border-style: solid;
+  color: white;
+  padding: 7px 12px;
+  text-align: center;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.buttons:hover {
+  background-color: #4C596B;
+}
+
+.buttons {
+  background-color: #2C9FDD;
+  border-style: solid;
+  color: white;
+  padding: 7px 12px;
+  text-align: center;
+  display: inline-block;
+  font-size: 16px;
+  margin: 3px 2px;
+  cursor: pointer;
+}
+
+.buttons:hover {
+  background-color: #4C596B;
+}
+
+table {
+    border: 1px solid #CCC;
+    border-collapse: collapse;
+    width: 50%;
+    border: none;
+    margin-left: 270px;
+}
+
+td {
+    border: none;
+    padding: 15px;
+    width: 80px;
+    border: none;
+}
+</style>
+<body>
+  <div class="container">
+<center>
+  {% csrf_token %}
+<table>
+   <tr><td>Date</td> <td>{{ update.Date }}<td></tr>
+   <tr><td>Topic</td> <td>{{ update.Topic }}<td></tr>
+   <tr><td>From Engineer </td> <td>{{ update.From_Engineer }}<td></tr>
+   <tr><td>Description</td> <td>{{ update.Description }}<td></tr>
+   <tr><td>Status </td> <td>{{ update.Status }}<td></tr>
+</table>
+  <form>
+    <td><button class="buttons" formaction="{% url 'updates:updates_list' %}">Back to list</button></td>
+  <form>
+</center>
+
+</div>
+</body>
+</html>
+{% endblock %}

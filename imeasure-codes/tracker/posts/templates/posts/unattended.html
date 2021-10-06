@@ -1,0 +1,137 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Pending</title>
+</head>
+<style>
+  th {
+    text-align: left;
+    background-color: #56B2E4;
+    color: #FFFFFF;
+    text-decoration: none!important;
+    text-align: left;
+    padding: 8px;
+    font-size: 80%;
+  }
+
+  table {
+  border-collapse: collapse;
+  width: 100%;
+  }
+
+  td {
+    text-align: left;
+    padding: 8px;
+    font-size: 80%;
+  }
+
+  tr:hover {background-color:#CBE3FA;}
+
+  tr:nth-child(even) {background-color: #F2F9FD;}
+
+  .buttons {
+    background-color: #2C9FDD;
+    border-style: solid;
+    color: white;
+    padding: 7px 12px;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
+
+  .buttons:hover {
+    background-color: #4C596B;
+  }
+
+  div.table-container {
+    display: inline-block;
+    position:relative;
+    overflow:auto;
+  }
+
+</style>
+  <ul>
+    <div style="background: white;
+    width: 100%;
+    height: 100%;
+    overflow: scroll;
+    border: 2px solid #2C9FDD;">
+    <table style="width:100%">
+      <tr>
+        <th>Ticket number</th>
+        <th>Year</th>
+        <th>Month</th>
+        <th>Date</th>
+        <th>Shift</th>
+        <th>Day Of Week</th>
+        <th>Time</th>
+        <th>Responded Time</th>
+        <th>Time spent</th>
+        <th>Complexity</th>
+        <th>Responsible Team</th>
+        <th>False alarm</th>
+        <th>Incident Type</th>
+        <th>Priority</th>
+        <th>If Others Please Specify</th>
+        <th>Description</th>
+        <th>Environment</th>
+        <th>Host Type</th>
+        <th>Host Name</th>
+        <th>Source of Alert</th>
+        <th>Mode of Alert</th>
+        <th>NOC Engineer</th>
+        <th>Remediation</th>
+        <th>Escalated</th>
+        <th>Escalated Reason</th>
+        <th>Status</th>
+        <th>Escalated to</th>
+        <th>Resolved by Team</th>
+        <th>Resolved by Engineer</th>
+        <th>Resolution</th>
+        <th>Comments</th>
+      </tr>
+  {% for filter in filter.qs %}
+  <tr>
+    <td><a  href="{% url 'posts:tracker_view' filter.id %}">{{ filter.id }}</a></td>
+    <td>{{ filter.Year }}</td>
+    <td>{{ filter.Month }}</td>
+    <td>{{ filter.Date }}</td>
+    <td>{{ filter.Shift }}</td>
+    <td>{{ filter.Day_Of_Week }}</td>
+    <td>{{ filter.Time }}</td>
+    <td>{{ filter.Responded_Time }}</td>
+    <td>{{ filter.Time_spent }}</td>
+    <td>{{ filter.Complexity }}</td>
+    <td>{{ filter.Responsible_Team }}</td>
+    <td>{{ filter.False_alarm }}</td>
+    <td>{{ filter.Incident_Type }}</td>
+    <td>{{ filter.Priority }}</td>
+    <td>{{ filter.If_Others_Please_Specify }}</td>
+    <td>{{ filter.Description }}</td>
+    <td>{{ filter.Environment }}</td>
+    <td>{{ filter.Host_Type }}</td>
+    <td>{{ filter.Host_Name }}</td>
+    <td>{{ filter.Source_of_Alert }}</td>
+    <td>{{ filter.Mode_of_Alert }}</td>
+    <td>{{ filter.NOC_Engineer }}</td>
+    <td>{{ filter.Remediation }}</td>
+    <td>{{ filter.Escalated }}</td>
+    <td>{{ filter.Escalated_Reason }}</td>
+    <td>{{ filter.Status }}</td>
+    <td>{{ filter.Escalated_to }}</td>
+    <td>{{ filter.Resolved_by_Team }}</td>
+    <td>{{ filter.Resolved_by_Engineer }}</td>
+    <td>{{ filter.Resolution }}</td>
+    <td>{{ filter.Comments }}</td>
+  </tr>
+  {% endfor %}
+</div>
+  </ul>
+  {% csrf_token %}
+{% endblock %}

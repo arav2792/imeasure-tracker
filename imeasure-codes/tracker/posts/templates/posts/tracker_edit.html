@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+<head>
+  {% load static %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="{% static 'js/toggle.js' %}"></script>
+  <script src="{% static 'js/inctoggle.js' %}"></script>
+  <script src="{% static 'js/pchild.js' %}"></script>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script>
+        $( function() {
+            $( "#id_Date" ).datepicker({
+                dateFormat: 'yy-mm-dd',
+                changeMonth: true,
+                changeYear: true
+            });
+        });
+</script>
+  <title>Add new!</title>
+  <script>
+  function updateText(type)
+   {
+ var id = type+'Text';
+ document.getElementById(id).value = document.getElementById(type).value;
+   }
+</script>
+
+  <script>
+  $(document).ready(function () {
+      toggleFieldss();
+      $("#id_Incident_Type").change(function () {
+          toggleFieldss();
+      });
+
+  });
+
+  function toggleFieldss() {
+      if ($("#id_Incident_Type").val() === "Alert")
+          $("#id_Alert").show() && $("#id_Task").hide() && $("#id_General_Health_Check").hide() && $("#id_If_Others_Please_Specify").hide() && $('label[for=id_Alert], input#id_Alert').show() && $('label[for=id_Task], input#id_Task').hide()  && $('label[for=id_General_Health_Check], input#id_General_Health_Check').hide()
+          && $('label[for=id_If_Others_Please_Specify], input#id_If_Others_Please_Specify').hide() ;
+
+
+      else if ($("#id_Incident_Type").val() === "Task")
+          $("#id_Alert").hide() && $("#id_Task").show() && $("#id_General_Health_Check").hide() && $("#id_If_Others_Please_Specify").hide() && $("#id_Remediation").hide() && $('label[for=id_Alert], input#id_Alert').hide() && $('label[for=id_Task], input#id_Task').show()  && $('label[for=id_General_Health_Check], input#id_General_Health_Check').hide()
+          && $('label[for=id_If_Others_Please_Specify], input#id_If_Others_Please_Specify').hide() && $('label[for=id_Remediation], input#id_Remediation').hide() ;
+
+
+      else if ($("#id_Incident_Type").val() === "GHC")
+          $("#id_Alert").hide() && $("#id_Task").hide() && $("#id_General_Health_Check").show() && $("#id_If_Others_Please_Specify").hide() && $("#id_Remediation").hide() && $('label[for=id_Alert], input#id_Alert').hide() && $('label[for=id_Task], input#id_Task').hide()  && $('label[for=id_General_Health_Check], input#id_General_Health_Check').show()
+          && $('label[for=id_If_Others_Please_Specify], input#id_If_Others_Please_Specify').hide() && $('label[for=id_Remediation], input#id_Remediation').hide() ;
+
+
+      else if ($("#id_Incident_Type").val() === "Other")
+          $("#id_Alert").hide() && $("#id_Task").hide() && $("#id_General_Health_Check").hide() && $("#id_If_Others_Please_Specify").show() && $("#id_Remediation").hide() && $('label[for=id_Alert], input#id_Alert').hide() && $('label[for=id_Task], input#id_Task').hide()  && $('label[for=id_General_Health_Check], input#id_General_Health_Check').hide()
+          && $('label[for=id_If_Others_Please_Specify], input#id_If_Others_Please_Specify').show() && $('label[for=id_Remediation], input#id_Remediation').hide() ;
+      }
+
+  </script>
+<script>
+$(document).ready(function () {
+    toggleFields();
+    $("#id_Escalated").change(function () {
+        toggleFields();
+    });
+
+});
+
+function toggleFields() {
+    if ($("#id_Escalated").val() === "Yes")
+        $("#id_Escalated_to").show() && $("#id_Escalated_Reason").show() && $('label[for=id_Escalated_to], input#id_Escalated_to').show() && $('label[for=id_Escalated_Reason], input#id_Escalated_Reason').show();
+    else
+        $("#id_Escalated_to").hide() && $("#id_Escalated_Reason").hide() && $('label[for=id_Escalated_to], input#id_Escalated_to').hide() && $('label[for=id_Escalated_Reason], input#id_Escalated_Reason').hide();
+}
+</script>
+</head>
+<style>
+* {
+  box-sizing: border-box;
+}
+
+input[type=text], select, textarea {
+  width: 300%;
+  padding: 4px;
+  border: 1px solid #4C596B;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+label {
+  padding: 1px 12px 12px 0;
+  display: inline-block;
+  margin-left: -80px;
+}
+
+input[type=submit] {
+  background-color: white;
+  color: #2C9FDD;
+  padding: 3px 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  float: left;
+  margin-left : 1%
+}
+
+input[type=reset] {
+  background-color: white;
+  color: #2C9FDD;
+  padding: 3px 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  float: left;
+  margin-left : 7%
+}
+
+input[type=submit]:hover {
+  background-color: #4C596B;
+}
+
+input[type=reset]:hover {
+  background-color: #4C596B;
+}
+
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.border {
+  background-color: #EAF5FB;
+  width: 600px;
+  border: 10px solid #56B2E4;
+  padding: 2px;
+  margin: 20px;
+  margin-left: 400px;
+}
+
+.boxhead a {
+    color: #2C9FDD;
+    text-decoration: none;
+}
+
+.boxhead a:hover{
+  background-color: #4C596B;
+}
+
+form {
+        margin-left : 27%
+    }
+
+.inlineLabels ul {
+  list-style:none;
+}
+
+form, fieldset{
+  width:100%;
+}
+
+fieldset{
+  border: 0 none;
+  display: flex;
+  padding: 5px 0;
+  margin: 0;
+}
+
+
+label{
+  width: 125px;
+  white-space: pre-wrap;
+  overflow: visible;
+}
+
+input{
+  flex: 0 2 0;
+}
+
+ul#shiftid li{
+ display: inline-block;
+ width: 1px;
+ margin-left: 89px;
+ margin: -90px 0 0px 90px;
+ clear: none;
+ }
+
+ul#weekid li{
+ display: inline-block;
+ width: 1px;
+ margin-left: 89px;
+ margin: -90px 0 0px 90px;
+ }
+
+ul#falseid li{
+ display: inline-block;
+ width: 1px;
+ margin-left: 89px;
+ margin: -90px 0 20px 90px;
+ }
+
+ul#modeid li{
+ display: inline-block;
+ width: 1px;
+ margin-left: 89px;
+ margin: -90px 0 20px 90px;
+ }
+
+ul#priorityid li{
+ display: inline-block;
+ width: 0%;
+ margin-left: 89px;
+ margin: -90px 0 20px 90px;
+ }
+ #mySidenav a {
+   position: absolute;
+   left: -80px;
+   transition: 0.3s;
+   padding: 15px;
+   width: 100px;
+   text-decoration: none;
+   font-size: 20px;
+   color: white;
+   border-radius: 0 5px 5px 0;
+ }
+
+ #mySidenav a:hover {
+   left: 0;
+ }
+
+ #home {
+   top: 20px;
+   background-color: #4CAF50;
+ }
+
+ #updates {
+   top: 80px;
+   background-color: #2196F3;
+ }
+
+ #schedule {
+   top: 140px;
+   background-color: #f44336;
+ }
+
+ #quicklinks {
+   top: 200px;
+   background-color: #555
+ }
+</style>
+
+<body>
+  <div id="mySidenav" class="sidenav">
+    <a href="{% url 'accounts:home' %}" id="home">Home</a>
+    <a href="{% url 'updates:updates_list' %}" id="updates">Updates</a>
+    <a href="{% url 'posts:schedule' %}" id="schedule", style='font-size:16px';>Schedule</a>
+    <a href="{% url 'posts:quicklinks' %}" id="quicklinks">Quick Links</a>
+  </div>
+
+
+<div class="border">
+<form class="site-form" method="post" enctype="multipart/form-data">
+  <fieldset>
+  <div class="inlineLabels">
+  {% csrf_token %}
+    {{ tracker.as_p }}
+  </div>
+  </fieldset>
+  <div class="boxhead">
+    <input type="submit" value="Submit">&nbsp;
+      <input type="reset" value="Reset">&nbsp;
+    <button><a href="{% url 'posts:tracker_list' %}">Back to list</a></button>
+  </div>
+
+</form>
+</div>
+
+</body>
+</html>

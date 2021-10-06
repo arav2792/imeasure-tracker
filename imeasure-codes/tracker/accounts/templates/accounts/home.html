@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Home</title>
+<style>
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #2C9FDD;
+  width: 200px;
+}
+
+li {
+  text-align: center;
+  border-bottom: 1px solid #555;
+  text-align: center;
+}
+
+li a, .dropbtn {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover, .dropdown:hover .dropbtn {
+  background-color: #56B2E4;
+}
+
+li.dropdown {
+  display: block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #EAF5FB;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: center;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+</style>
+</head>
+<body>
+  {% csrf_token %}
+<h1 style="color:#4C596B;">iMeasure</h1>
+<ul>
+  <li><a href="{% url 'updates:updates_list' %}">Process Updates</a></li>
+  <li><a href="{% url 'posts:schedule' %}">Engineer Schedule</a></li>
+  <li><a href=#>Quick Links</a></li>
+  <li class="dropdown">
+    <a href="#" class="dropbtn">Non PD alerts</a>
+    <div class="dropdown-content">
+      <a href="{% url 'posts:tracker_list' %}" >Tracker</a>
+      <a href="http://imeasure.iopex.com/posts/pending/?Status=pending">Pending Tickets</a>
+      <a href="http://imeasure.iopex.com/posts/unattended/?Resolved_by_Engineer=noc">Unattended Tickets</a>
+    </div>
+  </li>
+
+</ul>
+
+</body>
+</html>
